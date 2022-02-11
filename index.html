@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Shooting Club Torrevista</title>
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/font-awesome.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic" rel="stylesheet" />
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <link href="images/fav.ico" rel="shortcut icon" />
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111267435-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || []
+            function gtag() {
+                dataLayer.push(arguments)
+            }
+            gtag('js', new Date())
+
+            gtag('config', 'UA-111267435-1')
+        </script>
+    </head>
+    <body onload="countdown()">
+        <div class="container">
+            <div class="overlay"></div>
+            <div class="texto">
+                <div class="logo">
+                    <img src="images/logo.png" />
+                </div>
+                <div class="intro-title">Actualmente estamos trabajando en un nuevo sitio web. ¡Manténganse al tanto!</div>
+                <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i>Tiempo restante hasta el lanzamiento</div>
+                <div class="cuenta-atras">
+                    <div class="dias">
+                        <div class="number">10</div>
+                        <div class="label">Días</div>
+                    </div>
+                    <div class="horas">
+                        <div class="number">12</div>
+                        <div class="label">Horas</div>
+                    </div>
+                    <div class="minutos">
+                        <div class="number">35</div>
+                        <div class="label">Minutos</div>
+                    </div>
+                    <div class="segundos">
+                        <div class="number">6</div>
+                        <div class="label">Segundos</div>
+                    </div>
+                </div>
+                <form class="contacto" method="post" id="contact-form">
+                    <div class="field">
+                        <input type="email" name="email" class="text" id="email" required autocomplete="off" />
+                        <div class="label"><i class="fa fa-paper-plane-o" aria-hidden="true"></i><label for="email">Introduce tu correo</label></div>
+                    </div>
+                    <div class="actions">
+                        <input type="submit" value="Avisarme" class="submit" />
+                    </div>
+                </form>
+
+                <div id="resultado">
+                    <div class="contenido">
+                        <i class="fa fa-times-circle close" aria-hidden="true" onclick="jQuery('#resultado').hide()"></i>
+                        <div id="texto"></div>
+                    </div>
+                </div>
+
+                <script>
+                    jQuery('#email').keyup(function () {
+                        if (jQuery(this).val().length > 0) {
+                            jQuery(this).addClass('check')
+                        } else {
+                            jQuery(this).removeClass('check')
+                        }
+                    })
+
+                    jQuery('#contact-form').on('submit', function (e) {
+                        e.preventDefault()
+
+                        var email = jQuery('#email').val()
+                        var validacion_email = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/
+
+                        if (!validacion_email.test(email)) {
+                            alert('Por favor introduzca un correo válido.')
+                            jQuery('#email').focus()
+                            return false
+                        } else {
+                            jQuery.ajax({
+                                type: 'POST',
+                                url: 'submit.php',
+                                data: { email: email },
+                                success: function () {
+                                    jQuery('#resultado #texto').html('Gracias por visitar nuestra web.<br>Le avisaremos en cuento este disponible.<br>Vuelva pronto.')
+                                    jQuery('#resultado').css('display', 'flex')
+                                },
+                                error: function () {
+                                    jQuery('#resultado #texto').html('Lo sentimos pero ha surgido un erros.<br>Por favor intentelo de nuevo más tarde.')
+                                    jQuery('#resultado').css('display', 'flex')
+                                }
+                            })
+                            return false
+                        }
+                    })
+
+                    function countdown() {
+                        var fecha = new Date('2020', '3', '20', '00', '00', '00')
+                        var hoy = new Date()
+                        var dias = 0
+                        var horas = 0
+                        var minutos = 0
+                        var segundos = 0
+
+                        if (fecha > hoy) {
+                            var diferencia = (fecha.getTime() - hoy.getTime()) / 1000
+                            dias = Math.floor(diferencia / 86400)
+                            diferencia = diferencia - 86400 * dias
+                            horas = Math.floor(diferencia / 3600)
+                            diferencia = diferencia - 3600 * horas
+                            minutos = Math.floor(diferencia / 60)
+                            diferencia = diferencia - 60 * minutos
+                            segundos = Math.floor(diferencia)
+
+                            jQuery('.dias .number').html(dias)
+                            jQuery('.horas .number').html(horas)
+                            jQuery('.minutos .number').html(minutos)
+                            jQuery('.segundos .number').html(segundos)
+
+                            if (dias > 0 || horas > 0 || minutos > 0 || segundos > 0) {
+                                setTimeout('countdown()', 1000)
+                            }
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+    </body>
+</html>

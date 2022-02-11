@@ -1,0 +1,208 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    background: url(../images/bg.jpg) center center no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    min-height: 100vh;
+}
+.container .overlay {
+    background: rgba(22, 30, 39, 0.6);
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.container .texto {
+    padding: 50px;
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+}
+.container .texto .logo {
+    margin-bottom: 60px;
+}
+.container .texto .intro-title {
+    color: #fff;
+    font-size: 36px;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+.container .texto .time {
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.2;
+    margin-bottom: 30px;
+}
+.container .texto .time i {
+    color: #fff;
+    display: inline-block;
+    font-size: 20px;
+    margin-right: 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+.container .texto .cuenta-atras {
+    overflow: hidden;
+    margin-bottom: 80px;
+}
+.container .texto .cuenta-atras > div {
+    border-right: 1px solid #fff;
+    border-color: rgba(255, 255, 255, 0.8);
+    color: #fff;
+    float: left;
+    text-align: center;
+    vertical-align: top;
+    width: 25%;
+}
+.container .texto .cuenta-atras > div:nth-child(1) {
+    border-left: 1px solid #fff;
+    border-color: rgba(255, 255, 255, 0.8);
+}
+.container .texto .cuenta-atras .number {
+    display: block;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1;
+    padding-bottom: 20px;
+}
+.container .texto .cuenta-atras .label {
+    display: block;
+    font-size: 12px;
+    line-height: 1;
+    text-transform: uppercase;
+}
+.contacto {
+    overflow: hidden;
+}
+.contacto .field {
+    position: relative;
+    width: calc(100% - 165px);
+    float: left;
+}
+.contacto .field .label {
+    position: absolute;
+    top: 0;
+    left: 8px;
+    line-height: 40px;
+}
+.contacto .field .label i {
+    line-height: 20px;
+    border-right: 2px solid #fff;
+    padding-right: 5px;
+    margin-right: 5px;
+}
+.contacto input {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid #fff;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 14px;
+    padding: 5px 10px;
+    width: 100%;
+    line-height: 26px;
+}
+.contacto input.text {
+    padding-left: 35px;
+}
+.contacto .actions {
+    width: 150px;
+    float: right;
+}
+.contacto input.text:focus + .label label,
+.contacto input.text.check + .label label {
+    display: none;
+}
+.contacto input.submit {
+    cursor: pointer;
+}
+#resultado {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000ad;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+#resultado .contenido {
+    background: #fff;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0px 0px 5px 0px #ddd;
+    max-width: 90%;
+}
+#resultado .contenido #texto {
+    font-size: 20px;
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+#resultado .contenido .close {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    color: #000;
+    font-size: 32px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+    background: #fff;
+    border-radius: 50%;
+}
+
+@media (max-width: 800px) {
+    .container .texto .logo {
+        margin-bottom: 25px;
+    }
+    .container .texto .intro-title {
+        font-size: 25px;
+    }
+    #resultado .contenido #texto {
+        font-size: 16px;
+    }
+}
+@media (max-width: 600px) {
+    .contacto .field {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .contacto .actions {
+        width: 100%;
+    }
+}
+@media (max-width: 470px) {
+    .container .texto,
+    #resultado .contenido {
+        padding: 20px;
+    }
+    .container .texto .intro-title {
+        font-size: 20px;
+    }
+    .container .texto .time {
+        font-size: 15px;
+    }
+    .container .texto .time i {
+        font-size: 18px;
+    }
+    .container .texto .cuenta-atras .number {
+        font-size: 35px;
+    }
+}
